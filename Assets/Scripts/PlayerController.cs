@@ -31,6 +31,14 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
     //This function is called when a move inout is detected.
     void OnMove(InputValue movementValue)
     {
