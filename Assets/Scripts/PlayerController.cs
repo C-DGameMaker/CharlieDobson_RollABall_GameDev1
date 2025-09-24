@@ -52,6 +52,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            winTextObject.gameObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+        }
+    }
+
     //This function is called when a move inout is detected.
     void OnMove(InputValue movementValue)
     {
@@ -62,12 +72,15 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
+   
+
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
 
         if (count >= 10)
         {
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
             winTextObject.SetActive(true);
         }
            
