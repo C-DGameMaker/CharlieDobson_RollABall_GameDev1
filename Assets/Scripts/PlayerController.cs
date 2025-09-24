@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 10;
     public TextMeshProUGUI countText;
 
+    public GameObject winTextObject;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
         count = 0;
         SetCountText();
+
+        winTextObject.SetActive(false);
     }
     private void FixedUpdate()
     {
@@ -61,5 +65,12 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
+
+        if (count >= 10)
+        {
+            winTextObject.SetActive(true);
+        }
+           
+
     }
 }
