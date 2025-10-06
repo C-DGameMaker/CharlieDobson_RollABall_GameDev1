@@ -21,10 +21,16 @@ public class PauseMenuManager : MonoBehaviour
             }
         }
     }
+    void Resume()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+        pauseMenuUI.SetActive(false);
+    }
 
     void PauseMenu()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
         isPaused = true;
         pauseMenuUI.SetActive(true);
     }
@@ -44,10 +50,5 @@ public class PauseMenuManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    void Resume()
-    {
-        Time.timeScale = 1;
-        isPaused = false;
-        pauseMenuUI.SetActive(false);
-    }
+    
 }
