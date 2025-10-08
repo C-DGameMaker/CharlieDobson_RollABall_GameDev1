@@ -5,7 +5,8 @@ public class RandomGeneratedWords : MonoBehaviour
 {
     public GameObject splashText;
     void Start()
-    { 
+    {
+        Time.timeScale = 1f;
         string[] words = { "Better than Grandma", "As seen on Tv", "LESS POLYGONS!", "Dynamic Lighting", "Created to spread evil", "Yo Mama", "YOLO", "It's a game" };
 
         int wordChoice = Random.Range(0, words.Length);
