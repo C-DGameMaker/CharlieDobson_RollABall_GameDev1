@@ -43,6 +43,7 @@ public class PauseMenuManager : MonoBehaviour
     public void OnRestartButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
 
     public void OnQuitButton()
