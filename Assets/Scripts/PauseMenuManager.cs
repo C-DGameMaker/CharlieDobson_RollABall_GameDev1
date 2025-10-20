@@ -1,10 +1,12 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public AudioSource miniGameMusic;
     private bool isPaused = false;
 
     void Update()
@@ -26,6 +28,7 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         pauseMenuUI.SetActive(false);
+        miniGameMusic.UnPause();
     }
 
     void PauseMenu()
@@ -33,6 +36,7 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         pauseMenuUI.SetActive(true);
+        miniGameMusic.Pause();
     }
 
     public void OnResumeButton()
