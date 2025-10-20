@@ -10,7 +10,7 @@ public class LevelMenu : MonoBehaviour
 
     public void OnLevelButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(3);
     }
 
 }
