@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +16,7 @@ public class PlayerControllerLevel : MonoBehaviour
     //The player stats
     public float speed = 10;
     public float jumpForce = 10f;
+    private bool onGround;
 
 
 
@@ -29,7 +31,7 @@ public class PlayerControllerLevel : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Space)) // Check for jump input
+        if (Input.GetKeyDown(KeyCode.Space) && onGround == true) // Check for jump input
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply upward force
         }
@@ -44,6 +46,19 @@ public class PlayerControllerLevel : MonoBehaviour
 
         
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        onGround = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            onGround = false;
+        }
     }
 
     //This function is called when a move inout is detected.
