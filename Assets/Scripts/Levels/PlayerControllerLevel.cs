@@ -30,12 +30,17 @@ public class PlayerControllerLevel : MonoBehaviour
 
     private void Update()
     {
+<<<<<<< Updated upstream:Assets/Scripts/PlayerControllerLevel.cs
         
         if (Input.GetKeyDown(KeyCode.Space) && onGround == true) // Check for jump input
+=======
+        if (Input.GetKeyDown(KeyCode.Space)) // Check for jump input
+>>>>>>> Stashed changes:Assets/Scripts/Levels/PlayerControllerLevel.cs
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply upward force
         }
     }
+
     private void FixedUpdate()
     {
         //Creates a 3d movement vector using the X and Y inputs
@@ -43,9 +48,6 @@ public class PlayerControllerLevel : MonoBehaviour
 
         //Apply force to the rigidbody
         rb.AddForce(movement * speed);
-
-        
-
     }
 
     private void OnCollisionEnter(Collision collision)
