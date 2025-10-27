@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 
     private int count;
+    private float timer;
 
     //Movement along the x and y axes
     private float movementX;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     //The player speed
     public float speed = 10;
     public TextMeshProUGUI countText;
+    public TextMeshProUGUI timerText;
 
     public GameObject winTextObject;
 
@@ -29,6 +31,10 @@ public class PlayerController : MonoBehaviour
 
         count = 0;
         SetCountText();
+
+        timer = 0;
+       
+        //SetTimerText();
 
         winTextObject.SetActive(false);
     }
@@ -72,7 +78,19 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
-   
+    //void SetTimerText()
+    //{
+    //    timerText.text = "Timer: " + timer.ToString();
+    //    timer -= Time.deltaTime;
+
+
+    //    if (timer <= 0)
+    //    {
+    //        Destroy(gameObject);
+    //        winTextObject.gameObject.SetActive(true);
+    //        winTextObject.GetComponent<TextMeshProUGUI>().text = "Time ran out!";
+    //    }
+    //}
 
     void SetCountText()
     {
