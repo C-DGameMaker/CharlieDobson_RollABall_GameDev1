@@ -1,4 +1,7 @@
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting.FullSerializer.Internal;
+using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour
 {
@@ -7,65 +10,65 @@ public class HealthScript : MonoBehaviour
     public int maxHealth = 3;
     public int curHealth;
 
-    //public Image[] hearts;
-    //public Sprite fullHeart;
-    //public Sprite emptyHeart;
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
     void Start()
     {
         curHealth = maxHealth;
         gameOver.SetActive(false);
-        //UpdateHearts();
+        UpdateHearts();
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (curHealth > maxHealth)
-    //    {
-    //        curHealth = maxHealth;
-    //    }
-    //    if (curHealth == 0)
-    //    {
-    //        gameOver.SetActive(true);
-    //    }
+    
+    void Update()
+    {
+        if (curHealth > maxHealth)
+        {
+            curHealth = maxHealth;
+        }
+        if (curHealth == 0)
+        {
+            gameOver.SetActive(true);
+        }
 
-    //    UpdateHearts();
-    //}
+        UpdateHearts();
+    }
 
-    //void UpdateHearts()
-    //{
-    //    for (int i = 0; i < hearts.Length; i++)
-    //    {
-    //        if (i < curHealth)
-    //            hearts[i].sprite = fullHeart;
-    //        else
-    //            hearts[i].sprite = emptyHeart;
-    //    }
-    //}
+    void UpdateHearts()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < curHealth)
+                hearts[i].sprite = fullHeart;
+            else
+                hearts[i].sprite = emptyHeart;
+        }
+    }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Water"))
-    //    {
-    //        curHealth = curHealth - 1;
-    //    }
-    //    if (other.CompareTag("Checkpoint"))
-    //    {
-    //        curHealth = curHealth + 3;
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            curHealth = curHealth - 1;
+        }
+        if (other.CompareTag("Checkpoint"))
+        {
+            curHealth = curHealth + 3;
+        }
+    }
 
-    //public void TakeDamage(int amount)
-    //{
-    //    curHealth -= amount;
-    //    curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
-    //    UpdateHearts();
-    //}
+    public void TakeDamage(int amount)
+    {
+        curHealth -= amount;
+        curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
+        UpdateHearts();
+    }
 
-    //public void Heal(int amount)
-    //{
-    //    curHealth += amount;
-    //    curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
-    //    UpdateHearts();
-    //}
+    public void Heal(int amount)
+    {
+        curHealth += amount;
+        curHealth = Mathf.Clamp(curHealth, 0, maxHealth);
+        UpdateHearts();
+    }
 }
