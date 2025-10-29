@@ -1,7 +1,8 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 
     private int count;
-    private float timer;
+    private float startTimer = 120;
+    private float curTimer;
 
     //Movement along the x and y axes
     private float movementX;
@@ -32,10 +34,8 @@ public class PlayerController : MonoBehaviour
         count = 0;
         SetCountText();
 
-        timer = 0;
+        curTimer = startTimer;
        
-        //SetTimerText();
-
         winTextObject.SetActive(false);
     }
     private void FixedUpdate()
@@ -45,6 +45,20 @@ public class PlayerController : MonoBehaviour
 
         //Apply force to the rigidbody
         rb.AddForce(movement * speed);
+
+        if(curTimer > 0)
+        {
+            curTimer -= Time.deltaTime;
+            SetTimerText();
+        }
+        else
+        {
+            curTimer = 0;
+            Destroy(gameObject);
+            winTextObject.gameObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+        }
+
         
     }
 
@@ -78,19 +92,12 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
-    //void SetTimerText()
-    //{
-    //    timerText.text = "Timer: " + timer.ToString();
-    //    timer -= Time.deltaTime;
-
-
-    //    if (timer <= 0)
-    //    {
-    //        Destroy(gameObject);
-    //        winTextObject.gameObject.SetActive(true);
-    //        winTextObject.GetComponent<TextMeshProUGUI>().text = "Time ran out!";
-    //    }
-    //}
+    void SetTimerText()
+    {
+        int intTime = (int)curTimer;
+        string time = Convert.ToString(intTime);
+        timerText.text = "Timer: " + time;
+    }
 
     void SetCountText()
     {
