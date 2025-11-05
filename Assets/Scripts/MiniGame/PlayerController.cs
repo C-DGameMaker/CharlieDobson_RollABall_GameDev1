@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject winTextObject;
 
+    public AudioSource SoundEffects;
+    public AudioClip pickUp;
+    public AudioClip death;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,10 +50,14 @@ public class PlayerController : MonoBehaviour
         //Apply force to the rigidbody
         rb.AddForce(movement * speed);
 
-        if(curTimer > 0)
+        if(curTimer > 0 && count < 10)
         {
             curTimer -= Time.deltaTime;
             SetTimerText();
+        }
+        else if(count >= 10)
+        {
+            curTimer = startTimer;
         }
         else
         {
@@ -57,6 +65,8 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
             winTextObject.gameObject.SetActive(true);
             winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            SoundEffects.clip = death;
+            SoundEffects.Play();
         }
 
         
@@ -69,6 +79,8 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count += 1;
             SetCountText();
+            SoundEffects.clip = pickUp;
+            SoundEffects.Play();
         }
     }
 
@@ -79,6 +91,8 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
             winTextObject.gameObject.SetActive(true);
             winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            SoundEffects.clip = death;
+            SoundEffects.Play();
         }
     }
 

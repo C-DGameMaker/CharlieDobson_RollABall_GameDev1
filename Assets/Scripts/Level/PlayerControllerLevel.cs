@@ -7,6 +7,7 @@ public class PlayerControllerLevel : MonoBehaviour
 {
    //RigidBody of the player
     private Rigidbody rb;
+    public GameObject teleport;
     
 
     //Movement along the x and y axes
@@ -18,7 +19,9 @@ public class PlayerControllerLevel : MonoBehaviour
     public float jumpForce = 10f;
     private bool onGround;
 
-
+    public AudioSource sound;
+    public AudioClip hurt;
+    public AudioClip pickUp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,12 +53,30 @@ public class PlayerControllerLevel : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        onGround = true;
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Wall"))
+        {
+            onGround = true;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            other.gameObject.SetActive(false);
+            sound.clip = pickUp;
+            sound.Play();
+        }
+
+        if(other.gameObject.CompareTag("Barrier"))
+        {
+            transform.position = teleport.transform.position;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Wall"))
         {
             onGround = false;
         }
