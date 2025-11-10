@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
 
     private int count;
-    private float startTimer = 120;
+    private float startTimer = 60;
     private float curTimer;
 
     //Movement along the x and y axes
