@@ -23,11 +23,16 @@ public class PlayerControllerLevel : MonoBehaviour
     public AudioClip hurt;
     public AudioClip pickUp;
 
+    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //Get and store the RigidBody component attached to the player
         rb = GetComponent<Rigidbody>();
+
+        Vector3 customForward = transform.right;
+        transform.forward += customForward;
 
     }
 
@@ -38,6 +43,10 @@ public class PlayerControllerLevel : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply upward force
         }
+
+
+      
+
     }
     private void FixedUpdate()
     {
