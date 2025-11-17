@@ -46,17 +46,14 @@ public class HealthScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Water"))
-        {
-            curHealth = curHealth - 1;
-        }
-        if (other.CompareTag("Checkpoint"))
-        {
-            curHealth = curHealth + 3;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Barrier"))
+    //    {
+    //        TakeDamage(1);
+    //    }
+        
+    //}
 
     public void TakeDamage(int amount)
     {

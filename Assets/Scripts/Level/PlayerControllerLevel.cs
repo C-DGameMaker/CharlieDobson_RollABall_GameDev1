@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +24,10 @@ public class PlayerControllerLevel : MonoBehaviour
     public AudioClip hurt;
     public AudioClip pickUp;
 
+    //Scripts needed
+    public HealthScript health;
+    public GameObject gameOver;
+
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,6 +35,7 @@ public class PlayerControllerLevel : MonoBehaviour
     {
         //Get and store the RigidBody component attached to the player
         rb = GetComponent<Rigidbody>();
+        
 
         Vector3 customForward = transform.right;
         transform.forward += customForward;
@@ -44,10 +50,15 @@ public class PlayerControllerLevel : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply upward force
         }
 
-
+        if(health.curHealth == 0)
+        {
+            Destroy(gameObject);
+            gameOver.SetActive(true);
+        }
       
 
     }
+
     private void FixedUpdate()
     {
         //Creates a 3d movement vector using the X and Y inputs
@@ -80,6 +91,15 @@ public class PlayerControllerLevel : MonoBehaviour
         if(other.gameObject.CompareTag("Barrier"))
         {
             transform.position = teleport.transform.position;
+            health.TakeDamage(1);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Barrier"))
+        {
+            
         }
     }
 
