@@ -24,6 +24,9 @@ public class PlayerControllerLevel : MonoBehaviour
     public AudioClip hurt;
     public AudioClip pickUp;
 
+    public TextMeshProUGUI countText;
+    private int count;
+
     //Scripts needed
     public HealthScript health;
     public GameObject gameOver;
@@ -39,6 +42,9 @@ public class PlayerControllerLevel : MonoBehaviour
 
         Vector3 customForward = transform.right;
         transform.forward += customForward;
+
+        count = 0;
+        SetCountText();
 
     }
 
@@ -84,6 +90,8 @@ public class PlayerControllerLevel : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
+            count =+ 1;
+            SetCountText();
             sound.clip = pickUp;
             sound.Play();
         }
@@ -95,12 +103,10 @@ public class PlayerControllerLevel : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void SetCountText()
     {
-        if(other.gameObject.CompareTag("Barrier"))
-        {
-            
-        }
+        countText.text = "Count: " + count.ToString();
+
     }
 
     private void OnCollisionExit(Collision collision)

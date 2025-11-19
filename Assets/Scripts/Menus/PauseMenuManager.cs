@@ -52,7 +52,9 @@ public class PauseMenuManager : MonoBehaviour
 
     public void OnQuitButton()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+        
     }
 
     
