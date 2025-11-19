@@ -3,6 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelMenu : MonoBehaviour
 {
+
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
+
     public void OnMiniGameButton()
     {
         SceneManager.LoadScene(2);

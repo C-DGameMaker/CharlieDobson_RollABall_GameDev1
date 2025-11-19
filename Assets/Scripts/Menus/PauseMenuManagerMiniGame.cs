@@ -1,18 +1,17 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-public class PauseMenuManager : MonoBehaviour
+public class PauseMenuManagerMiniGame : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public AudioSource miniGameMusic;
     private bool isPaused = false;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(isPaused)
+            if (isPaused)
             {
                 Resume();
             }
@@ -27,6 +26,7 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         pauseMenuUI.SetActive(false);
+        miniGameMusic.UnPause();
     }
 
     void PauseMenu()
@@ -34,6 +34,7 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 0f;
         isPaused = true;
         pauseMenuUI.SetActive(true);
+        miniGameMusic.Pause();
     }
 
     public void OnResumeButton()
@@ -49,11 +50,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void OnQuitButton()
     {
-        isPaused = false;
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
-        
-    }
+        Application.Quit();
 
-    
+    }
 }

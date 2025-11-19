@@ -38,7 +38,7 @@ public class PlayerControllerLevel : MonoBehaviour
     {
         //Get and store the RigidBody component attached to the player
         rb = GetComponent<Rigidbody>();
-        
+
 
         Vector3 customForward = transform.right;
         transform.forward += customForward;
@@ -90,7 +90,7 @@ public class PlayerControllerLevel : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
-            count =+ 1;
+            count += 1;
             SetCountText();
             sound.clip = pickUp;
             sound.Play();

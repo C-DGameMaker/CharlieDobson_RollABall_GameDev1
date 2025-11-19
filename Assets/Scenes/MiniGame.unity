@@ -998,7 +998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 365940467}
-  - component: {fileID: 365940466}
+  - component: {fileID: 365940468}
   m_Layer: 0
   m_Name: PauseMenuManager
   m_TagString: Untagged
@@ -1006,20 +1006,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &365940466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 365940465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6de9e8941f257124795c0dad985d882b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1565430572}
-  miniGameMusic: {fileID: 1747388799}
 --- !u!4 &365940467
 Transform:
   m_ObjectHideFlags: 0
@@ -1035,6 +1021,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1891076847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &365940468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365940465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd9a379549ba9b4fadf20a0daa1cdc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1565430572}
+  miniGameMusic: {fileID: 1747388799}
 --- !u!1 &396439648
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,8 +2191,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 365940466}
-        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 365940468}
+        m_TargetAssemblyTypeName: PauseMenuManagerMiniGame, Assembly-CSharp
         m_MethodName: OnRestartButton
         m_Mode: 1
         m_Arguments:
@@ -2650,8 +2650,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 365940466}
-        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 365940468}
+        m_TargetAssemblyTypeName: PauseMenuManagerMiniGame, Assembly-CSharp
         m_MethodName: OnResumeButton
         m_Mode: 1
         m_Arguments:
@@ -4372,8 +4372,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 365940466}
-        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 365940468}
+        m_TargetAssemblyTypeName: PauseMenuManagerMiniGame, Assembly-CSharp
         m_MethodName: OnQuitButton
         m_Mode: 1
         m_Arguments:
